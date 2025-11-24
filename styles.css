@@ -22,7 +22,7 @@ html[data-theme="dark"] {
     --bg-alt: #020617;
     --text: #E5E7EB;
     --muted: #9CA3AF;
-    --card-bg: #020617;
+    --card-bg: #2c2c54; /* ⬅️ CRITICAL FIX: Changed from #020617 to a visible dark shade */
     --border-subtle: rgba(148, 163, 184, 0.25);
     --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
 }
