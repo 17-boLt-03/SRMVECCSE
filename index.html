@@ -84,28 +84,32 @@
                     <span class="eyebrow">Department of CSE</span>
                     <h2>Computer Science and Engineering</h2>
                     <h4>Department of Computer Science and Engineering</h4>
-                        <p class="muted">
-                            SRM Valliammai Engineering College, a member of SRM Group of Institutions, was established in the year
-                            1999. The Department of Computer Science and Engineering came into existence from the very inception
-                            of the college. Initially, the annual intake was 60. National Board of Accreditation (NBA) has
-                            accredited the B.E. CSE programme for a period of 3 years. In tune with the growing global demand
-                            for CSE, the intake level was enhanced to 180 in the year 2019–20.
-                        </p>
-                        <p class="muted">
-                            In addition, the department started the P.G. course <strong>M.E. Computer Science and Engineering</strong>
-                            with an intake of 18 from the academic year 2012–13.
-                        </p>
-                        <p class="muted">
-                            Right from its inception in the year 1999, the Department has steadily grown in all spheres and
-                            continues to focus on academic excellence, research, and industry relevance.
-                        </p>
+                    <p class="muted">
+                        SRM Valliammai Engineering College, a member of SRM Group of Institutions, was established in
+                        the year
+                        1999. The Department of Computer Science and Engineering came into existence from the very
+                        inception
+                        of the college. Initially, the annual intake was 60. National Board of Accreditation (NBA) has
+                        accredited the B.E. CSE programme for a period of 3 years. In tune with the growing global
+                        demand
+                        for CSE, the intake level was enhanced to 180 in the year 2019–20.
+                    </p>
+                    <p class="muted">
+                        In addition, the department started the P.G. course <strong>M.E. Computer Science and
+                            Engineering</strong>
+                        with an intake of 18 from the academic year 2012–13.
+                    </p>
+                    <p class="muted">
+                        Right from its inception in the year 1999, the Department has steadily grown in all spheres and
+                        continues to focus on academic excellence, research, and industry relevance.
+                    </p>
                 </div>
                 <div class="hero-actions">
                     <a class="cta-primary" href="#about">Explore Department</a>
                 </div>
                 <div class="hero-cards">
-                <div class="card-hero">
-                    <strong>Established</strong>
+                    <div class="card-hero">
+                        <strong>Established</strong>
                         <div class="muted-sm">1999</div>
                     </div>
                     <div class="card-hero">
@@ -114,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         </div>
     </header>
 
@@ -242,7 +246,8 @@
                     </div>
                 </div>
                 <div class="faculty-card">
-                    <img src="https://srmvalliammai.ac.in/wp-content/uploads/2022/04/dhanakodi.png" alt="Dr. V. Dhanakoti">
+                    <img src="https://srmvalliammai.ac.in/wp-content/uploads/2022/04/dhanakodi.png"
+                        alt="Dr. V. Dhanakoti">
                     <div class="faculty-meta">
                         <h4>Dr.V.Dhanakoti M.E.,Ph.D.</h4>
                         <p class="muted-sm">Professor</p>
@@ -411,17 +416,20 @@
             </div>
             <div class="placements">
                 <div class="placement-stat">
-                    <h2>95%+</h2>
+                    <h2>18%+</h2>
                     <p class="muted-sm">Overall placement rate for the last graduating batch.</p>
                 </div>
                 <div class="placement-stat">
                     <h2>Top Recruiters</h2>
-                    <p class="muted-sm">Infosys, TCS, Wipro, Amazon, Cisco, Zoho, Freshworks</p>
+                    <p class="muted-sm">Prodapt, Hexaware, EPAM, Mu Sigma, Kaar Technologies, Propel</p>
                 </div>
                 <div class="placement-stat">
                     <h2>Avg CTC</h2>
-                    <p class="muted-sm">6.2 LPA (median)</p>
+                    <p class="muted-sm">4.85 LPA (median)</p>
                 </div>
+            </div>
+            <div class="faculty-more">
+                <a href="placement.html" class="view-more-btn">View All →</a>
             </div>
         </div>
     </section>
@@ -661,30 +669,30 @@
     </script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const counters = document.querySelectorAll(".count");
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll(".count");
 
-        counters.forEach(counter => {
-            const target = +counter.getAttribute("data-target");
-            let current = 0;
-            const speed = 30; // smaller = faster animation
+            counters.forEach(counter => {
+                const target = +counter.getAttribute("data-target");
+                let current = 0;
+                const speed = 30; // smaller = faster animation
 
-            const updateCount = () => {
-                const increment = Math.ceil(target / 80);
+                const updateCount = () => {
+                    const increment = Math.ceil(target / 80);
 
-                if (current < target) {
-                    current += increment;
-                    if (current > target) current = target;
-                    counter.innerText = current;
-                    setTimeout(updateCount, speed);
-                } else {
-                    counter.innerText = target + "+";
-                }
-            };
+                    if (current < target) {
+                        current += increment;
+                        if (current > target) current = target;
+                        counter.innerText = current;
+                        setTimeout(updateCount, speed);
+                    } else {
+                        counter.innerText = target + "+";
+                    }
+                };
 
-            updateCount();
+                updateCount();
+            });
         });
-    });
     </script>
 
 
