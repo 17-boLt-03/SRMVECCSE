@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>GPA Calculator – SRM Valliammai Engineering College</title>
+    <link rel="icon" href="image.png" />
 
     <script>
         (function () {
@@ -67,6 +68,18 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Custom text selection color */
+        ::selection {
+            background: #7D2AE8;
+            color: #ffffff;
+        }
+
+        ::-moz-selection {
+            background: #7D2AE8;
+            color: #ffffff;
+        }
+
 
         /* Label */
         label {
@@ -213,32 +226,43 @@
                 </div>
             </a>
 
+            <!-- Desktop menu -->
             <div class="menu">
-                <a href="index.html#about">About & Vision</a>
-                <a href="staff.html">Faculty</a>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About us</a>
+                <a href="index.html#faculty">Faculty</a>
                 <a href="index.html#labs">Labs</a>
-                <a href="placement.html">Placements</a>
                 <a href="index.html#events">Events</a>
+                <a href="index.html#placements">Placements</a>
                 <a href="index.html#alumni">Alumni</a>
                 <a href="index.html#blog">Blog</a>
-                <a class="cta-nav" href="index.html#contact">Contact</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="cgpa.html">GPA-Calculator</a>
             </div>
 
+
+            <!-- Hamburger -->
             <button class="hamb" id="hamb" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
 
+        <!-- Mobile full-screen menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html#about">About & Vision</a>
-            <a href="staff.html">Faculty</a>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About us</a>
+            <a href="index.html#faculty">Faculty</a>
             <a href="index.html#labs">Labs</a>
-            <a href="placement.html">Placements</a>
             <a href="index.html#events">Events</a>
+            <a href="index.html#placements">Placements</a>
             <a href="index.html#alumni">Alumni</a>
             <a href="index.html#blog">Blog</a>
             <a href="index.html#contact">Contact</a>
+            <a href="cgpa.html">GPA-Calculator</a>
         </div>
+
     </nav>
 
     <main id="gpa-page">
@@ -247,7 +271,7 @@
             <p class="muted">Calculate your semester GPA using your regulation & department.</p>
         </div>
 
-        <div class="card reveal" role="region" aria-label="GPA Calculator card">
+        <div class="card" role="region" aria-label="GPA Calculator card">
             <div class="form-grid" role="form" aria-label="GPA form">
                 <div>
                     <label for="regulation">Select Regulation</label>
@@ -308,6 +332,7 @@
             <div>&copy; 2022 - 2026 Dept of CSE - SRM VEC</div>
         </div>
     </main>
+
 
     <div class="floating-controls">
         <button id="themeToggle" class="fab" aria-label="Toggle theme">🌙</button>

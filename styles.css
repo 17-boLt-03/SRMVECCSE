@@ -271,6 +271,17 @@ html[data-theme="dark"] .mobile-menu {
     }
 }
 
+/* Custom text selection color */
+::selection {
+    background: #7D2AE8;
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background: #7D2AE8;
+    color: #ffffff;
+}
+
 /* ========== HERO ========== */
 
 .hero {
@@ -741,48 +752,84 @@ section {
     border: 1px solid var(--border-subtle);
 }
 
-/* Footer */
+/* ===== NEW FOOTER LAYOUT ===== */
 
-footer {
-    background: #020617;
-    color: #e5e7eb;
-    padding: 36px 20px 18px;
-    margin-top: 20px;
+.footer-main {
+    padding: 40px 0 10px;
 }
 
-.footer-grid {
+.footer-top {
     display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
-footer h3,
-footer h4 {
-    margin: 0 0 8px;
+.footer-map iframe {
+    width: 100%;
+    height: 220px;
+    border: 0;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
 }
 
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+/* Second row */
+.footer-bottom-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-footer a {
+/* Quick links two columns */
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 20px;
+}
+
+.quick-links-grid a {
     color: inherit;
     text-decoration: none;
     font-size: 14px;
 }
 
-footer a:hover {
+.quick-links-grid a:hover {
     text-decoration: underline;
 }
 
-.footer-bottom {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 13px;
-    color: #9ca3af;
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
 }
+
+.social-icons img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media(max-width: 800px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-row {
+        grid-template-columns: 1fr;
+    }
+
+    .social-icons {
+        justify-content: flex-start;
+    }
+}
+
 
 /* View more button */
 

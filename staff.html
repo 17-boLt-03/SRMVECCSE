@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>CSE Department – Faculty</title>
+    <link rel="icon" href="image.png" />
 
     <!-- Theme bootstrap -->
     <script>
@@ -92,6 +93,24 @@
             text-decoration: underline;
         }
 
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Custom text selection color */
+        ::selection {
+            background: #7D2AE8;
+            color: #ffffff;
+        }
+
+        ::-moz-selection {
+            background: #7D2AE8;
+            color: #ffffff;
+        }
+
         @media (max-width: 600px) {
             .staff-container {
                 margin-top: 100px;
@@ -112,17 +131,21 @@
                 </div>
             </a>
 
+            <!-- Desktop menu -->
             <div class="menu">
-                <a href="index.html#about">About & Vision</a>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About us</a>
                 <a href="index.html#faculty">Faculty</a>
                 <a href="index.html#labs">Labs</a>
                 <a href="index.html#events">Events</a>
                 <a href="index.html#placements">Placements</a>
                 <a href="index.html#alumni">Alumni</a>
                 <a href="index.html#blog">Blog</a>
-                <a class="cta-nav" href="index.html#contact">Contact</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="cgpa.html">GPA-Calculator</a>
             </div>
 
+            <!-- Hamburger -->
             <button class="hamb" id="hamb" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -130,8 +153,10 @@
             </button>
         </div>
 
+        <!-- Mobile full-screen menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html#about">About & Vision</a>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About us</a>
             <a href="index.html#faculty">Faculty</a>
             <a href="index.html#labs">Labs</a>
             <a href="index.html#events">Events</a>
@@ -139,6 +164,7 @@
             <a href="index.html#alumni">Alumni</a>
             <a href="index.html#blog">Blog</a>
             <a href="index.html#contact">Contact</a>
+            <a href="cgpa.html">GPA-Calculator</a>
         </div>
     </nav>
 
@@ -151,6 +177,10 @@
 
         <div class="staff-grid" id="staffGrid">
             <!-- staff.json items will be loaded here -->
+        </div>
+        <div class="footer">
+            <div>Designed by Karthick S & Shakthi K, Dept. of CSE</div>
+            <div>&copy; 2022 - 2026 Dept of CSE - SRM VEC</div>
         </div>
     </main>
 

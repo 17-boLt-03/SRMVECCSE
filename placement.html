@@ -4,14 +4,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>CSE Department – Placements</title>
+    <title>SRMVEC - CSE Department | About</title>
+    <meta name="description"
+        content="Vision, Mission, Programme Educational Objectives, Programme Outcomes and Programme Specific Outcomes of the CSE Department." />
+    <link rel="icon" href="image.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
 
-    <!-- Theme bootstrap -->
+    <!-- Set theme BEFORE CSS loads (system preference or saved choice) -->
     <script>
         (function () {
             try {
                 const saved = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const theme = saved || (prefersDark ? 'dark' : 'light');
                 document.documentElement.setAttribute('data-theme', theme);
             } catch (e) {
@@ -20,7 +26,7 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="styles.css" />
+    <link href="styles.css" rel="stylesheet">
 
     <style>
         /* ---- EXTRA STYLES FOR PLACEMENTS ---- */
@@ -156,17 +162,21 @@
                 </div>
             </a>
 
+            <!-- Desktop menu -->
             <div class="menu">
-                <a href="index.html#about">About & Vision</a>
-                <a href="staff.html">Faculty</a>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About us</a>
+                <a href="index.html#faculty">Faculty</a>
                 <a href="index.html#labs">Labs</a>
-                <a href="placement.html">Placements</a>
                 <a href="index.html#events">Events</a>
+                <a href="index.html#placements">Placements</a>
                 <a href="index.html#alumni">Alumni</a>
                 <a href="index.html#blog">Blog</a>
-                <a class="cta-nav" href="index.html#contact">Contact</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="cgpa.html">GPA-Calculator</a>
             </div>
 
+            <!-- Hamburger -->
             <button class="hamb" id="hamb" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -174,15 +184,18 @@
             </button>
         </div>
 
+        <!-- Mobile full-screen menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html#about">About & Vision</a>
-            <a href="staff.html">Faculty</a>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About us</a>
+            <a href="index.html#faculty">Faculty</a>
             <a href="index.html#labs">Labs</a>
-            <a href="placement.html">Placements</a>
             <a href="index.html#events">Events</a>
+            <a href="index.html#placements">Placements</a>
             <a href="index.html#alumni">Alumni</a>
             <a href="index.html#blog">Blog</a>
             <a href="index.html#contact">Contact</a>
+            <a href="cgpa.html">GPA-Calculator</a>
         </div>
     </nav>
 
