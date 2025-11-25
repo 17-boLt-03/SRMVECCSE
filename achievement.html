@@ -371,7 +371,7 @@
                 }
 
                 // Initial load
-                renderCards(data);
+                renderCards([...originalData].reverse());
 
                 // Sorting logic
                 sortSelect.addEventListener("change", () => {
