@@ -400,7 +400,7 @@
                 sortSelect.addEventListener("change", () => {
                     const mode = sortSelect.value;
 
-                    if (mode === "new") {
+                    if (mode === "old") {
                         renderCards([...originalData]);       // newest → oldest
                     } else {
                         renderCards([...originalData].reverse()); // oldest → newest
