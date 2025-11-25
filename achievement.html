@@ -181,6 +181,13 @@
             font-size: 14px;
             cursor: pointer;
         }
+
+        .lazy-img {
+            background: #333;
+            min-height: 160px;
+            display: block;
+            border-radius: 12px;
+        }
     </style>
 </head>
 
@@ -323,7 +330,7 @@
         }, { threshold: 0.15 });
 
         // ===== LOAD ACHIEVEMENTS JSON =====
-        fetch("achievement.json")
+        fetch("https://script.google.com/macros/s/AKfycbwcntlchkgKLlO4wtxxTQTwy6zDSTpweLwk4ANhuV82V6txTRcb-ddHSA-A18EcePiU/exec")
             .then(res => res.json())
             .then(originalData => {
 
@@ -340,10 +347,10 @@
                         card.className = "achieve-card reveal";
 
                         card.innerHTML = `
-                        <img src="${item.img}" alt="achievement">
+                        <img class="lazy-img" data-src="${item.img}" alt="achievement">
                         <h4>${item.title}</h4>
                         <p>${item.desc}</p>
-                    `;
+                        `;
 
                         // popup
                         card.addEventListener("click", () => {
@@ -354,6 +361,9 @@
                         });
 
                         grid.appendChild(card);
+                        const img = card.querySelector("img");
+                        img.src = img.getAttribute("data-src");
+
                     });
 
                     // 🚀 IMPORTANT: apply reveal animation to new cards also
