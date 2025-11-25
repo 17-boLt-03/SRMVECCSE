@@ -753,6 +753,9 @@ section {
 }
 
 /* ===== NEW FOOTER LAYOUT ===== */
+footer {
+    border-top: 2px solid var(--border-subtle);
+}
 
 .footer-main {
     padding: 40px 0 10px;
@@ -807,12 +810,21 @@ section {
 .social-icons img {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
     transition: transform 0.3s ease;
 }
 
 .social-icons img:hover {
     transform: scale(1.1);
+}
+
+/* Bottom bar */
+.footer-bottom {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px 20px;
+    border-top: 2px solid var(--border-subtle);
+    font-size: 13px;
+    color: var(--muted);
 }
 
 /* Responsive */
