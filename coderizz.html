@@ -164,6 +164,26 @@
             color: #7D2AE8;
             text-decoration: none;
         }
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 55px;
+            height: 55px;
+            margin-top: -27.5px;
+            margin-left: -27.5px;
+            border: 5px solid #ddd;
+            border-top-color: #7D2AE8;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            z-index: 5000;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -218,7 +238,7 @@
     </nav>
 
     <!-- CODERIZZ CLUB PAGE CONTENT -->
-    <main class="staff-container">
+    <main class="staff-container" id="contentWrapper" style="display:none;">
         <div class="staff-header">
             <h2>CODERIZZ Club</h2>
             <p class="muted">A student-run organization aimed at enhancing coding skills through events, hackathons and workshops.</p>
@@ -319,7 +339,7 @@
         toggleBackToTop();
 
         // ===== LOAD CODERIZZ EVENTS JSON =====
-        fetch("coderizz.json")
+        fetch("https://script.google.com/macros/s/AKfycbwELeh0ZBvC0RoFFz-3URk79CQaYx8wA3HtNgiG4pn7p9_NIvLcCE9b0ndgKfKGkWmp/exec")
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -328,6 +348,8 @@
             })
             .then(data => {
                 const grid = document.getElementById("eventsGrid");
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("contentWrapper").style.display = "block";
                 
                 data.forEach(event => {
                     const card = document.createElement('div');
@@ -336,7 +358,7 @@
                     card.innerHTML = `
                         <img src="${event.image}" alt="${event.title}" onerror="this.src='image.png'">
                         <div class="event-title">${event.title}</div>
-                        <div class="event-date">${event.date}</div>
+                        <div class="event-date">${event.date.substring(0, 10)}</div>
                         <p>${event.description}</p>
                     `;
                     grid.appendChild(card);
@@ -365,6 +387,7 @@
                 `;
             });
     </script>
+    <div id="loader" class="loader"></div>
 </body>
 
 </html>
