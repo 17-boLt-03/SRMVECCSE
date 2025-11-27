@@ -146,6 +146,26 @@
                 margin-top: 100px;
             }
         }
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 55px;
+            height: 55px;
+            margin-top: -27.5px;
+            margin-left: -27.5px;
+            border: 5px solid #ddd;
+            border-top-color: #7D2AE8;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            z-index: 5000;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -167,8 +187,8 @@
                 <a href="index.html">Home</a>
                 <a href="index.html#about">About us</a>
                 <a href="index.html#faculty">Faculty</a>
-                <a href="index.html#coderizz">Coderizz</a>
-                <a href="index.html#achievements">Events</a>
+                <a href="index.html#labs">Labs</a>
+                <a href="index.html#events">Events</a>
                 <a href="index.html#placements">Placements</a>
                 <a href="index.html#alumni">Alumni</a>
                 <a href="index.html#blog">Blog</a>
@@ -189,9 +209,8 @@
             <a href="index.html">Home</a>
             <a href="index.html#about">About us</a>
             <a href="index.html#faculty">Faculty</a>
-            <a href="index.html#coderizz">Coderizz</a>
             <a href="index.html#labs">Labs</a>
-            <a href="index.html#achievements">Events</a>
+            <a href="index.html#events">Events</a>
             <a href="index.html#placements">Placements</a>
             <a href="index.html#alumni">Alumni</a>
             <a href="index.html#blog">Blog</a>
@@ -232,7 +251,7 @@
         <button id="themeToggle" class="fab">🌙</button>
         <button id="backToTop" class="fab">↑</button>
     </div>
-
+<div id="loader" class="loader"></div>
     <script>
         /* ========== MOBILE MENU ========== */
         const hamb = document.getElementById("hamb");
@@ -292,7 +311,7 @@
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
 
-        fetch("placement.json")
+        fetch("https://script.google.com/macros/s/AKfycbxRiV7frTl8iAyPzyIXUsm1wBQpsIzLXp-KV_RJRtgCAPApcfbJqXh-dDz9QfSNh77SKA/exec")
             .then(r => r.json())
             .then(data => {
                 placementData = data;
@@ -300,6 +319,7 @@
 
                 loadFilters(data);
                 renderPage();
+            document.getElementById("loader").style.display = "none";
             });
 
         function loadFilters(data) {
