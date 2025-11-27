@@ -570,7 +570,7 @@
             });
         });
 
-        /* ========== PLACEMENT DATA (Placed Students tab) ========== */
+        /* ========== LOAD PLACEMENT DATA ========== */
 
         let placementData = [];
         let filteredData = [];
@@ -588,11 +588,9 @@
             .then(data => {
                 placementData = data;
                 filteredData = data;
+
                 loadFilters(data);
                 renderPage();
-            })
-            .catch(err => {
-                console.error("Error loading placement.json", err);
             });
 
         function loadFilters(data) {
@@ -631,8 +629,6 @@
 
             if (pageItems.length === 0) {
                 grid.innerHTML = "<p>No results found.</p>";
-                prevBtn.disabled = true;
-                nextBtn.disabled = true;
                 return;
             }
 
