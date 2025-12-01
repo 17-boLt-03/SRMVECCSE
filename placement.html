@@ -315,6 +315,33 @@
                 grid-template-columns: minmax(0, 1fr);
             }
         }
+
+        /* Hide UI when loading */
+        .loading-hide {
+            visibility: hidden !important;
+        }
+
+
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 55px;
+            height: 55px;
+            margin-top: -27.5px;
+            margin-left: -27.5px;
+            border: 5px solid #ddd;
+            border-top-color: #7D2AE8;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            z-index: 5000;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -434,29 +461,98 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Hexaware</td><td>12</td></tr>
-                            <tr><td>Prodapt</td><td>3</td></tr>
-                            <tr><td>Kaar Technologies</td><td>2</td></tr>
-                            <tr><td>Propel</td><td>1</td></tr>
-                            <tr><td>EPAM</td><td>1</td></tr>
-                            <tr><td>Mu Sigma</td><td>1</td></tr>
-                            <tr><td>TCS</td><td>0</td></tr>
-                            <tr><td>Cognizant</td><td>0</td></tr>
-                            <tr><td>Avasoft</td><td>0</td></tr>
-                            <tr><td>Soft Suave</td><td>0</td></tr>
-                            <tr><td>Blue Bridge</td><td>0</td></tr>
-                            <tr><td>Infosys</td><td>0</td></tr>
-                            <tr><td>Prudent</td><td>0</td></tr>
-                            <tr><td>SecureKloud</td><td>0</td></tr>
-                            <tr><td>IBM</td><td>0</td></tr>
-                            <tr><td>Cognida AI</td><td>0</td></tr>
-                            <tr><td>HCL Tech</td><td>0</td></tr>
-                            <tr><td>Movate</td><td>0</td></tr>
-                            <tr><td>Geval 6</td><td>0</td></tr>
-                            <tr><td>Levarus</td><td>0</td></tr>
-                            <tr><td>American Megatrends</td><td>0</td></tr>
-                            <tr><td>JCL</td><td>0</td></tr>
-                            <tr><td>Blackstraw</td><td>0</td></tr>
+                            <tr>
+                                <td>Hexaware</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Prodapt</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Kaar Technologies</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Propel</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>EPAM</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Mu Sigma</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>TCS</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Cognizant</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Avasoft</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Soft Suave</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Blue Bridge</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Infosys</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Prudent</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>SecureKloud</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>IBM</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Cognida AI</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>HCL Tech</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Movate</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Geval 6</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Levarus</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>American Megatrends</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>JCL</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Blackstraw</td>
+                                <td>0</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -469,12 +565,12 @@
                     <div class="coord-card reveal">
                         <h4>Mr. N. Leo Bright Tennisson M.Tech., (Ph.D.)</h4>
                         <p class="muted-sm">Placement Coordinator – CSE</p>
-                        <p class="muted-sm">Phone: 0000000000</p>
+                        <p class="muted-sm">Phone: 88704 38866</p>
                     </div>
                     <div class="coord-card reveal">
                         <h4>Ms. R. Anbuvizhi B.E., M.E.</h4>
                         <p class="muted-sm">Placement Coordinator – CSE</p>
-                        <p class="muted-sm">Phone: 0000000000</p>
+                        <p class="muted-sm">Phone: 80561 97090</p>
                     </div>
                     <div class="coord-card reveal">
                         <h4>Mr. M. Venkatesh</h4>
@@ -497,6 +593,8 @@
         <button id="themeToggle" class="fab">🌙</button>
         <button id="backToTop" class="fab">↑</button>
     </div>
+    <div id="loader" class="loader"></div>
+
 
     <script>
         /* ========== MOBILE MENU ========== */
@@ -582,8 +680,15 @@
         const grid = document.getElementById("placementGrid");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        function toggleLoadingUI(isLoading) {
+            document.querySelector(".filter-bar").classList.toggle("loading-hide", isLoading);
+            document.querySelector(".pagination").classList.toggle("loading-hide", isLoading);
+            document.querySelector(".footer").classList.toggle("loading-hide", isLoading);
+        }
 
-        fetch("placement.json")
+        toggleLoadingUI(true); // Hide UI
+
+        fetch("https://script.google.com/macros/s/AKfycbxRiV7frTl8iAyPzyIXUsm1wBQpsIzLXp-KV_RJRtgCAPApcfbJqXh-dDz9QfSNh77SKA/exec")
             .then(r => r.json())
             .then(data => {
                 placementData = data;
@@ -591,7 +696,15 @@
 
                 loadFilters(data);
                 renderPage();
+
+                document.getElementById("loader").style.display = "none";
+                toggleLoadingUI(false); // Show UI
+            })
+            .catch(() => {
+                document.getElementById("loader").style.display = "none";
+                toggleLoadingUI(false);
             });
+
 
         function loadFilters(data) {
             [...new Set(data.map(d => d.company))].forEach(c =>
