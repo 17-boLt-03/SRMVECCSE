@@ -1,31 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>CSE Department – Admin Panel</title>
-    <link rel="icon" href="image.png" />
-
-    <!-- Theme bootstrap -->
-    <script>
-        (function () {
-            try {
-                const saved = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = saved || (prefersDark ? 'dark' : 'light');
-                document.documentElement.setAttribute('data-theme', theme);
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
-
-    <link rel="stylesheet" href="styles.css" />
-
-    <style>
-        /* Page container */
-        .admin-page {
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CSE Department – Admin Panel</title>
+  <link rel="icon" href="image.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* (keep same styling you had; minimal here) */
+    .login-screen { max-width:380px; margin:120px auto; padding:20px; border-radius:12px; }
+    .admin-page { max-width:1200px; margin:120px auto; padding:20px; }
+    .login-error { color:#dc2626; }
+    .status { margin-top:10px; font-size:14px; }
+    .admin-page {
             max-width: 1200px;
             margin: 120px auto 40px;
             padding: 0 20px 40px;
@@ -221,288 +208,146 @@
                 grid-template-columns: minmax(0, 1fr);
             }
         }
-    </style>
+  </style>
 </head>
-
 <body>
-    <!-- NAVBAR -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="brand">
-                <img src="image.png" alt="CSE logo">
-                <div>
-                    <h1>CSE Department</h1>
-                    <div class="brand-sub">SRM Valliammai Engineering College</div>
-                </div>
-            </a>
-
-            <!-- Desktop menu: only Home -->
-            <div class="menu">
-                <a href="index.html">Home</a>
-            </div>
-
-            <!-- Hamburger (you can hide this if admin not needed on mobile) -->
-            <button class="hamb" id="hamb" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <img src="image.png" alt="CSE logo">
+        <div>
+          <h1>CSE Department</h1>
+          <div class="brand-sub">SRM Valliammai Engineering College</div>
         </div>
+      </a>
+      <div class="menu"><a href="index.html">Home</a></div>
+    </div>
+  </nav>
 
-        <!-- Mobile full-screen menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html">Home</a>
-        </div>
-    </nav>
+  <!-- ADMIN LOGIN -->
+  <div id="adminLogin" class="login-screen">
+    <h2>Admin Login</h2>
+    <p>Enter admin password to access secure panel</p>
+    <input type="password" id="adminPassword" placeholder="Admin password" />
+    <button id="adminLoginBtn">Login</button>
+    <p id="adminError" class="login-error"></p>
+    <p id="adminInfo" class="status"></p>
+  </div>
 
-    <!-- LOGIN SCREEN -->
-    <main id="loginScreen" class="login-screen">
-        <h2>Admin Login</h2>
-        <p>Only authorized staff can update website content from this panel.</p>
+  <!-- ADMIN PANEL -->
+  <main id="adminPanel" class="admin-page" style="display:none;">
+    <h2>Admin Dashboard</h2>
+    <div class="admin-grid">
+      <div class="admin-card">
+        <h3>Placement</h3>
+        <button onclick="openForm('placement')">Open Form</button>
+      </div>
 
-        <div class="login-field">
-            <label for="adminUser">Username</label>
-            <input type="text" id="adminUser" autocomplete="username" />
-        </div>
+      <div class="admin-card">
+        <h3>Achievements</h3>
+        <button onclick="openForm('achievements')">Open Form</button>
+      </div>
 
-        <div class="login-field">
-            <label for="adminPass">Password</label>
-            <input type="password" id="adminPass" autocomplete="current-password" />
-        </div>
+      <div class="admin-card">
+        <h3>Coderizz</h3>
+        <button onclick="openForm('coderizz')">Open Form</button>
+      </div>
 
-        <button class="btn-primary" id="loginBtn">Login</button>
-        <div class="login-error" id="loginError">Invalid username or password.</div>
-    </main>
-
-    <!-- ADMIN PANEL (HIDDEN UNTIL LOGIN) -->
-    <main id="adminPanel" class="admin-page" style="display:none;">
-        <div class="admin-header">
-            <h2>Admin Content Update Panel</h2>
-            <p>Use the forms below to submit updates. Approved responses will reflect on the main website.</p>
-        </div>
-
-        <div class="admin-grid">
-            <!-- Card 1: Placement -->
-            <div class="admin-card">
-                <h3>Placement Update Form</h3>
-                <p>
-                    Click the button below to update placement details on the website.
-                    Your changes will be applied directly, so please fill the form carefully and clearly.
-                </p>
-
-                <div class="card-actions">
-                    <button class="btn-primary" data-target="placementFrame">Open Form</button>
-                    <button class="btn-outline" data-close="placementFrame">Close Form</button>
-                </div>
-
-                <div class="form-frame" id="placementFrame">
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSc_WFKnWCs_VscOkD3uMvScdRAkaNVyl1FgDwumtDs7kEwG-A/viewform?embedded=true"
-                        title="Placement Update Form">
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- Card 2: Achievements & Events -->
-            <div class="admin-card">
-                <h3>Achievements &amp; Events Update Form</h3>
-                <p>
-                    Click the button below to update achievements and events on the website.
-                    Your changes will be applied directly, so please fill the form carefully and clearly.
-                </p>
-
-                <div class="card-actions">
-                    <button class="btn-primary" data-target="achievementsFrame">Open Form</button>
-                    <button class="btn-outline" data-close="achievementsFrame">Close Form</button>
-                </div>
-
-                <div class="form-frame" id="achievementsFrame">
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSemMq0OZq6uiRL_Kzx4CfqkkoB6-87dtBlCVrtgiaYmcKCz7g/viewform?embedded=true"
-                        title="Achievements & Events Update Form">
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- Card 3: Coderizz -->
-            <div class="admin-card">
-                <h3>Coderizz Event Updation Form</h3>
-                <p>
-                    Click the button below to update Coderizz club event details on the website.
-                    Your changes will be applied directly, so please fill the form carefully and clearly.
-                </p>
-
-                <div class="card-actions">
-                    <button class="btn-primary" data-target="coderizzFrame">Open Form</button>
-                    <button class="btn-outline" data-close="coderizzFrame">Close Form</button>
-                </div>
-
-                <div class="form-frame" id="coderizzFrame">
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSdEsYQRtS12wMuKnrImujNyRso5JgpvgHG1SpBUfiWK3xiKUA/viewform?embedded=true"
-                        title="Coderizz Event Update Form">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-
-        <div class="admin-footer-note">
-            For any queries contact
-            <strong>Karthick S (9514192195)</strong>,
-            <strong>Shakthi K (6383149466)</strong>.
-        </div>
-    </main>
-
-    <!-- Floating theme + back-to-top controls -->
-    <div class="floating-controls">
-        <button id="themeToggle" class="fab" aria-label="Toggle light/dark theme">🌙</button>
-        <button id="backToTop" class="fab" aria-label="Back to top">↑</button>
+      <div class="admin-card">
+        <h3>Create Staff User</h3>
+        <div class="login-field"><label>Username</label><input id="cuUsername" /></div>
+        <div class="login-field"><label>Name</label><input id="cuName" /></div>
+        <div class="login-field"><label>Phone</label><input id="cuPhone" /></div>
+        <div class="login-field"><label>Password</label><input id="cuPassword" type="password" /></div>
+        <button id="createUserBtn">Create User</button>
+        <p id="createUserStatus" class="status"></p>
+      </div>
     </div>
 
-    <script>
-        // ===== MOBILE NAV =====
-        const hamb = document.getElementById('hamb');
-        const mobileMenu = document.getElementById('mobileMenu');
+    <div class="form-frame" style="margin-top:20px;">
+      <iframe id="formFrame" style="width:100%; height:600px; display:none;"></iframe>
+    </div>
 
-        hamb.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('open');
-            hamb.classList.toggle('open', isOpen);
-            hamb.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
+  </main>
 
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                hamb.classList.remove('open');
-                hamb.setAttribute('aria-expanded', 'false');
-            });
-        });
+<script>
+  // -------- admin login --------
+  document.getElementById('adminLoginBtn').addEventListener('click', async () => {
+    const password = document.getElementById('adminPassword').value;
+    document.getElementById('adminError').textContent = '';
+    document.getElementById('adminInfo').textContent = 'Logging in...';
 
-        // ===== THEME TOGGLE =====
-        const themeToggle = document.getElementById('themeToggle');
-        const root = document.documentElement;
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ password })
+      });
 
-        function updateThemeIcon() {
-            const theme = root.getAttribute('data-theme') || 'light';
-            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-        }
+      const body = await res.json().catch(()=>({}));
+      if (res.ok) {
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('adminInfo').textContent = '';
+        console.log('admin login success');
+      } else {
+        document.getElementById('adminError').textContent = body.message || 'Invalid password';
+        document.getElementById('adminInfo').textContent = '';
+        console.warn('admin login failed', res.status, body);
+      }
+    } catch (err) {
+      console.error('admin login error', err);
+      document.getElementById('adminError').textContent = 'Network/server error';
+      document.getElementById('adminInfo').textContent = '';
+    }
+  });
 
-        themeToggle.addEventListener('click', () => {
-            const current = root.getAttribute('data-theme') || 'light';
-            const next = current === 'light' ? 'dark' : 'light';
-            root.setAttribute('data-theme', next);
-            try { localStorage.setItem('theme', next); } catch (e) { }
-            updateThemeIcon();
-        });
+  // open form: open in new tab (reliable, avoids iframe blocking)
+  function openForm(type) {
+    window.open(`/secure-form/${type}`, '_blank', 'noopener');
+  }
 
-        updateThemeIcon();
+  // -------- create user --------
+  document.getElementById('createUserBtn').addEventListener('click', async () => {
+    const username = document.getElementById('cuUsername').value.trim();
+    const name = document.getElementById('cuName').value.trim();
+    const phone = document.getElementById('cuPhone').value.trim();
+    const password = document.getElementById('cuPassword').value;
 
-        // ===== BACK TO TOP =====
-        const backToTop = document.getElementById('backToTop');
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+    const status = document.getElementById('createUserStatus');
+    status.style.color = 'black';
+    status.textContent = 'Creating user...';
 
-        function toggleBackToTop() {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        }
+    if (!username || !password) { status.textContent = 'Username & password required'; status.style.color='red'; return; }
 
-        window.addEventListener('scroll', toggleBackToTop);
-        toggleBackToTop();
+    try {
+      const res = await fetch('/api/admin/create-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ username, name, phone, password })
+      });
 
-               // ===== SIMPLE LOGIN WITH SHA-256 (STILL FRONT-END ONLY) =====
-        const loginScreen = document.getElementById('loginScreen');
-        const adminPanel = document.getElementById('adminPanel');
-        const loginBtn = document.getElementById('loginBtn');
-        const loginError = document.getElementById('loginError');
-        const userInput = document.getElementById('adminUser');
-        const passInput = document.getElementById('adminPass');
-
-        // 1) Your fixed username
-        const ADMIN_USERNAME = "cse_admin";
-
-        // 2) Your SHA-256 password hash (hex string, lowercase)
-        //    ➜ You will generate this from:  cse@admin2k25
-        //    and paste it below instead of PASTE_YOUR_HASH_HERE
-        const ADMIN_PASSWORD_HASH = "cb5876123a5ec69555dd5efe00d9ec8904745848d21eb835457d2121be5a73e7";
-
-        // Helper: SHA-256 hash to hex
-        async function sha256Hex(message) {
-            if (!window.crypto || !window.crypto.subtle) {
-                console.error("Web Crypto API not available in this browser.");
-                throw new Error("Crypto not supported");
-            }
-            const encoder = new TextEncoder();
-            const data = encoder.encode(message);
-            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-            return hashHex;
-        }
-
-        async function handleLogin() {
-            const u = userInput.value.trim();
-            const p = passInput.value;
-
-            if (!u || !p) {
-                loginError.textContent = "Please enter both username and password.";
-                loginError.style.display = "block";
-                return;
-            }
-
-            try {
-                const enteredHash = await sha256Hex(p);
-
-                if (u === ADMIN_USERNAME && enteredHash === ADMIN_PASSWORD_HASH) {
-                    loginError.style.display = "none";
-                    loginScreen.style.display = "none";
-                    adminPanel.style.display = "block";
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                } else {
-                    loginError.textContent = "Invalid username or password.";
-                    loginError.style.display = "block";
-                }
-            } catch (err) {
-                console.error(err);
-                loginError.textContent = "Login not supported in this browser.";
-                loginError.style.display = "block";
-            }
-        }
-
-        // Login button
-        loginBtn.addEventListener("click", () => {
-            handleLogin();
-        });
-
-        // Enter key submits login
-        passInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                handleLogin();
-            }
-        });
-
-        // ===== TOGGLE FORM IFRAMES =====
-        document.querySelectorAll('[data-target]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.getAttribute('data-target');
-                const frame = document.getElementById(id);
-                if (frame) frame.style.display = 'block';
-            });
-        });
-
-        document.querySelectorAll('[data-close]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.getAttribute('data-close');
-                const frame = document.getElementById(id);
-                if (frame) frame.style.display = 'none';
-            });
-        });
-    </script>
+      const body = await res.json().catch(()=>({}));
+      if (res.ok) {
+        status.textContent = 'User created successfully';
+        status.style.color = 'green';
+        document.getElementById('cuUsername').value='';
+        document.getElementById('cuName').value='';
+        document.getElementById('cuPhone').value='';
+        document.getElementById('cuPassword').value='';
+      } else {
+        status.textContent = body.message || body.error || ('Failed to create user - ' + res.status);
+        status.style.color = 'red';
+        console.warn('create-user failed', res.status, body);
+      }
+    } catch (err) {
+      console.error('create-user error', err);
+      status.textContent = 'Network/server error';
+      status.style.color = 'red';
+    }
+  });
+</script>
 </body>
-
 </html>
-
