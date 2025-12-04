@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>SRMVEC - CSE Department | About</title>
+    <title>SRMVEC - CSE Department | Placements</title>
     <meta name="description"
-        content="Vision, Mission, Programme Educational Objectives, Programme Outcomes and Programme Specific Outcomes of the CSE Department." />
+        content="Placement records, company-wise offers and placement coordinators of the CSE Department." />
     <link rel="icon" href="../image.png" />
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap"
@@ -28,10 +28,8 @@
 
     <link href="../styles.css" rel="stylesheet">
 
-
     <style>
-        /* ---- EXTRA STYLES FOR PLACEMENTS ---- */
-
+        /* ---- CORE PAGE LAYOUT ---- */
         .place-container {
             max-width: 1200px;
             margin: 120px auto 40px;
@@ -47,6 +45,53 @@
             font-size: 24px;
             color: var(--primary);
         }
+
+        /* ---- TABS ---- */
+        .place-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 6px;
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--muted);
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            background: rgba(125, 42, 232, 0.08);
+        }
+
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: -6px;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--primary);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* ---- PLACED STUDENTS (EXISTING GRID) ---- */
 
         .filter-bar {
             display: flex;
@@ -142,11 +187,140 @@
             cursor: not-allowed;
         }
 
+        /* ---- PLACEMENT DETAILS TAB ---- */
+
+        /* counters */
+        .placement-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin: 10px 0 26px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px 18px 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .stat-card p {
+            margin: 4px 0 0;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* company table */
+        .company-table-section {
+            margin-top: 10px;
+        }
+
+        .company-table-section h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .company-table-wrap {
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            background: var(--card-bg);
+        }
+
+        table.company-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table.company-table th,
+        table.company-table td {
+            padding: 10px 12px;
+            font-size: 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+        }
+
+        table.company-table th {
+            background: var(--primary);
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        /* coordinators */
+        .coordinator-section {
+            margin-top: 26px;
+        }
+
+        .coordinator-section h3 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .coordinator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .coord-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px 18px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .coord-card h4 {
+            margin: 0 0 6px;
+            font-size: 16px;
+        }
+
+        .coord-card p {
+            margin: 2px 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .placement-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 600px) {
             .place-container {
                 margin-top: 100px;
             }
+
+            .placement-stats {
+                grid-template-columns: minmax(0, 1fr);
+            }
         }
+
+        /* Hide UI when loading */
+        .loading-hide {
+            visibility: hidden !important;
+        }
+
 
         .loader {
             position: fixed;
@@ -189,8 +363,8 @@
                 <a href="../index.html">Home</a>
                 <a href="../index.html#about">About us</a>
                 <a href="../index.html#faculty">Faculty</a>
-                <a href="../index.html#labs">Labs</a>
-                <a href="../index.html#events">Events</a>
+                <a href="../index.html#coderizz">Coderizz</a>
+                <a href="../index.html#achievements">Events</a>
                 <a href="../index.html#placements">Placements</a>
                 <a href="../index.html#alumni">Alumni</a>
                 <a href="../index.html#blog">Blog</a>
@@ -211,8 +385,9 @@
             <a href="../index.html">Home</a>
             <a href="../index.html#about">About us</a>
             <a href="../index.html#faculty">Faculty</a>
+            <a href="../index.html#coderizz">Coderizz</a>
             <a href="../index.html#labs">Labs</a>
-            <a href="../index.html#events">Events</a>
+            <a href="../index.html#achievements">Events</a>
             <a href="../index.html#placements">Placements</a>
             <a href="../index.html#alumni">Alumni</a>
             <a href="../index.html#blog">Blog</a>
@@ -223,28 +398,193 @@
 
     <main class="place-container">
         <div class="place-header">
-            <h2>Placement Records</h2>
-            <p class="muted">Top placements of our department students.</p>
+            <h2>Placements</h2>
+            <p class="muted">Placed students, visiting companies and department placement coordinators.</p>
         </div>
 
-        <!-- FILTERS -->
-        <div class="filter-bar">
-            <select id="companyFilter">
-                <option value="">Filter by Company</option>
-            </select>
-
-            <select id="batchFilter">
-                <option value="">Filter by Batch</option>
-            </select>
+        <!-- TABS -->
+        <div class="place-tabs">
+            <button class="tab-btn active" data-tab="students">Placed Students</button>
+            <button class="tab-btn" data-tab="details">Placement Details</button>
         </div>
 
-        <!-- GRID -->
-        <div class="placement-grid" id="placementGrid"></div>
+        <!-- TAB 1: PLACED STUDENTS (existing content) -->
+        <section id="tab-students" class="tab-panel active">
+            <!-- FILTERS -->
+            <div class="filter-bar">
+                <select id="companyFilter">
+                    <option value="">Filter by Company</option>
+                </select>
 
-        <!-- PAGINATION -->
-        <div class="pagination">
-            <button id="prevBtn">Previous</button>
-            <button id="nextBtn">Next</button>
+                <select id="batchFilter">
+                    <option value="">Filter by Batch</option>
+                </select>
+            </div>
+
+            <!-- GRID -->
+            <div class="placement-grid" id="placementGrid"></div>
+
+            <!-- PAGINATION -->
+            <div class="pagination">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </section>
+
+        <!-- TAB 2: PLACEMENT DETAILS -->
+        <section id="tab-details" class="tab-panel">
+            <!-- Section 1: Counters -->
+            <section class="placement-stats">
+                <div class="stat-card reveal">
+                    <h3 id="statCompanies" data-target="23">0</h3>
+                    <p>Companies Visited</p>
+                </div>
+                <div class="stat-card reveal">
+                    <h3 id="statStudents" data-target="20">0</h3>
+                    <p>Students Placed</p>
+                </div>
+                <div class="stat-card reveal">
+                    <h3 id="statCtc" data-target="5">0</h3>
+                    <p>Average CTC (LPA)</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Company-wise table -->
+            <section class="company-table-section">
+                <h3>Company-wise Placement Summary</h3>
+                <div class="company-table-wrap reveal">
+                    <table class="company-table">
+                        <thead>
+                            <tr>
+                                <th>Visited Companies</th>
+                                <th>Placed Students</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hexaware</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Prodapt</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Kaar Technologies</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Propel</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>EPAM</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Mu Sigma</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>TCS</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Cognizant</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Avasoft</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Soft Suave</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Blue Bridge</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Infosys</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Prudent</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>SecureKloud</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>IBM</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Cognida AI</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>HCL Tech</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Movate</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Geval 6</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Levarus</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>American Megatrends</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>JCL</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Blackstraw</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 3: Coordinators -->
+            <section class="coordinator-section">
+                <h3>Placement Coordinators – CSE Department</h3>
+                <div class="coordinator-grid">
+                    <div class="coord-card reveal">
+                        <h4>Mr. N. Leo Bright Tennisson M.Tech., (Ph.D.)</h4>
+                        <p class="muted-sm">Placement Coordinator – CSE</p>
+                        <p class="muted-sm">Phone: 88704 38866</p>
+                    </div>
+                    <div class="coord-card reveal">
+                        <h4>Ms. R. Anbuvizhi B.E., M.E.</h4>
+                        <p class="muted-sm">Placement Coordinator – CSE</p>
+                        <p class="muted-sm">Phone: 80561 97090</p>
+                    </div>
+                    <div class="coord-card reveal">
+                        <h4>Mr. M. Venkatesh</h4>
+                        <p class="muted-sm">Head – Placements, SRM Valliammai Engineering College</p>
+                        <p class="muted-sm">Phone: 98411 89100</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Footer (same style as staff.html) -->
+        <div class="footer">
+            <div>Designed by Karthick S &amp; Shakthi K, Dept. of CSE</div>
+            <div>&copy; 2022 - 2026 Dept of CSE - SRM VEC</div>
         </div>
     </main>
 
@@ -254,6 +594,8 @@
         <button id="backToTop" class="fab">↑</button>
     </div>
     <div id="loader" class="loader"></div>
+
+
     <script>
         /* ========== MOBILE MENU ========== */
         const hamb = document.getElementById("hamb");
@@ -300,6 +642,32 @@
 
         backToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
+        /* ========== TABS ========== */
+        const tabButtons = document.querySelectorAll(".tab-btn");
+        const tabPanels = document.querySelectorAll(".tab-panel");
+        let statsAnimated = false;
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = btn.dataset.tab;
+
+                tabButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                tabPanels.forEach(panel => {
+                    panel.classList.toggle("active", panel.id === "tab-" + target);
+                });
+
+                if (target === "details" && !statsAnimated) {
+                    animateStats();
+                    statsAnimated = true;
+                }
+
+                // re-run reveal for newly shown panel
+                revealInit();
+            });
+        });
+
         /* ========== LOAD PLACEMENT DATA ========== */
 
         let placementData = [];
@@ -312,6 +680,13 @@
         const grid = document.getElementById("placementGrid");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        function toggleLoadingUI(isLoading) {
+            document.querySelector(".filter-bar").classList.toggle("loading-hide", isLoading);
+            document.querySelector(".pagination").classList.toggle("loading-hide", isLoading);
+            document.querySelector(".footer").classList.toggle("loading-hide", isLoading);
+        }
+
+        toggleLoadingUI(true); // Hide UI
 
         fetch("https://script.google.com/macros/s/AKfycbxRiV7frTl8iAyPzyIXUsm1wBQpsIzLXp-KV_RJRtgCAPApcfbJqXh-dDz9QfSNh77SKA/exec")
             .then(r => r.json())
@@ -321,8 +696,15 @@
 
                 loadFilters(data);
                 renderPage();
+
                 document.getElementById("loader").style.display = "none";
+                toggleLoadingUI(false); // Show UI
+            })
+            .catch(() => {
+                document.getElementById("loader").style.display = "none";
+                toggleLoadingUI(false);
             });
+
 
         function loadFilters(data) {
             [...new Set(data.map(d => d.company))].forEach(c =>
@@ -385,6 +767,33 @@
         prevBtn.onclick = () => { currentPage--; renderPage(); };
         nextBtn.onclick = () => { currentPage++; renderPage(); };
 
+        /* ========== COUNTER ANIMATION (Placement Details tab) ========== */
+
+        function animateValue(el, target, duration) {
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(progress * (target - start) + start);
+                el.textContent = value;
+                if (progress < 1) requestAnimationFrame(update);
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        function animateStats() {
+            const companiesEl = document.getElementById("statCompanies");
+            const studentsEl = document.getElementById("statStudents");
+            const ctcEl = document.getElementById("statCtc");
+
+            animateValue(companiesEl, parseInt(companiesEl.dataset.target, 10) || 0, 1200);
+            animateValue(studentsEl, parseInt(studentsEl.dataset.target, 10) || 0, 1200);
+            animateValue(ctcEl, parseInt(ctcEl.dataset.target, 10) || 0, 1200);
+        }
+
         /* ========== REVEAL ANIMATION ========== */
         function revealInit() {
             const obs = new IntersectionObserver((entries) => {
@@ -398,6 +807,9 @@
 
             document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
         }
+
+        // init reveals on first load
+        revealInit();
     </script>
 
 </body>
